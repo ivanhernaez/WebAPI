@@ -7,6 +7,7 @@ namespace WebAPI.SnackShop.Configuration
     {
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
