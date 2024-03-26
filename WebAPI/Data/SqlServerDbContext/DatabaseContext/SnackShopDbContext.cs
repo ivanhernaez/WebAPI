@@ -27,6 +27,10 @@ namespace WebAPI.Data.SqlServerDbContext.DatabaseContext
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
+                entity.Property(e => e.Email).HasMaxLength(100);
+
+                entity.Property(e => e.Sex).HasMaxLength(50);
+
                 entity.Property(e => e.UpdatedBy).HasMaxLength(50);
 
                 entity.Property(e => e.UpdatedDate).HasDefaultValueSql("SYSDATETIME()");

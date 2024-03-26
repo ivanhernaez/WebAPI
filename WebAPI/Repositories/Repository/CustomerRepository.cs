@@ -55,6 +55,8 @@ namespace WebAPI.Repositories.Repository
                     customer.Phase = updateCustomer.Phase != 0 ? updateCustomer.Phase : customer.Phase;
                     customer.Block = updateCustomer.Block != 0 ? updateCustomer.Block : customer.Block;
                     customer.Lot = updateCustomer.Lot != 0 ? updateCustomer.Lot : customer.Lot;
+                    customer.Email = updateCustomer.Email ?? customer.Email;
+                    customer.Sex = updateCustomer.Sex ?? customer.Sex;
                     customer.UpdatedBy = updateCustomer.UpdatedBy;
                     customer.UpdatedDate = DateTime.Now;
                     _context.Entry(customer).State = EntityState.Modified;
