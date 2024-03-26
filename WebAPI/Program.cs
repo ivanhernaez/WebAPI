@@ -1,18 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using WebAPI.Models;
+using WebAPI.Data.SqlServerDbContext.DatabaseContext;
+using WebAPI.SnackShop.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddAutoMapper(typeof(MapperInitialier));
+builder.Services.ConfigureRepositoryWrapper();
 builder.Services.AddControllers();
-builder.Services.AddDbContext<DonationDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
-builder.Services.AddCors();
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<SnackShopDbContext>(
+    o => o.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -24,7 +26,7 @@ var app = builder.Build();
 //}
 
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:3000", "https://candidate-react-app.azurewebsites.net/")
+    options.WithOrigins("http://localhost:3000")
     .AllowAnyHeader()
     .AllowAnyMethod());
 
