@@ -17,14 +17,14 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:3000")
+    options.WithOrigins("http://localhost:3000", "https://candidate-react-app.azurewebsites.net/")
     .AllowAnyHeader()
     .AllowAnyMethod());
 
